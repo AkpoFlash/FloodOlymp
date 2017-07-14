@@ -5,16 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Flood
+namespace FloodOlymp
 {
     class File
     {
-        public string fileName;
+        private string fileName;
 
+        public string FileName
+        {
+            get { return fileName; }
+            set { fileName = value; }
+        }
 
         public File(string fileName)
         {
-            this.fileName = fileName;
+            this.FileName = fileName;
         }
 
 
@@ -24,7 +29,7 @@ namespace Flood
 
             try
             {
-                using (StreamReader stream = new StreamReader(this.fileName))
+                using (StreamReader stream = new StreamReader(this.FileName))
                 {
                     fileContent = stream.ReadToEnd();
                     stream.Close();
@@ -44,7 +49,7 @@ namespace Flood
         {
             try
             {
-                using (StreamWriter stream = new StreamWriter(this.fileName))
+                using (StreamWriter stream = new StreamWriter(this.FileName))
                 {
                     for (int i = 0; i < fileContent.Length; i++)
                     {

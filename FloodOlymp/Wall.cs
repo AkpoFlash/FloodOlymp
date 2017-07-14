@@ -5,51 +5,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Flood
+namespace FloodOlymp
 {
     class Wall
     {
-        public static int count;
-        public Point start;
-        public Point end;
-        public bool horizontal;
-        public int index;
-
+        static private int Count { get; set; }
+        public Point Start { get; set; }
+        public Point End { get; set; }
+        public bool Horizontal { get; set; }
+        public int Index { get; set; }
 
 
         public Wall(Point StartPoint, Point EndPoint)
         {
-            if (StartPoint.X == EndPoint.X)
+            this.Horizontal = (StartPoint.X == EndPoint.X) ? true : false;
+
+            bool validSequence = (this.Horizontal) ? StartPoint.Y < EndPoint.Y : StartPoint.X < EndPoint.X;
+
+            if (validSequence)
             {
-                this.horizontal = true;
-                if (StartPoint.Y < EndPoint.Y)
-                {
-                    this.start = StartPoint;
-                    this.end = EndPoint;
-                }
-                else
-                {
-                    this.start = EndPoint;
-                    this.end = StartPoint;
-                }
+                this.Start = StartPoint;
+                this.End = EndPoint;
             }
             else
             {
-                this.horizontal = false;
-                if (StartPoint.X < EndPoint.X)
-                {
-                    this.start = StartPoint;
-                    this.end = EndPoint;
-                }
-                else
-                {
-                    this.start = EndPoint;
-                    this.end = StartPoint;
-                };
+                this.Start = EndPoint;
+                this.End = StartPoint;
             }
 
-            this.index = ++count;
+            this.Index = ++Count;
         }
+
 
 
     }

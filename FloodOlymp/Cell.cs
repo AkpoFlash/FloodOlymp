@@ -4,14 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Flood
+namespace FloodOlymp
 {
     class Cell
     {
 
-        public bool flooded = false;
-        public bool horizontalWall = false;
-        public bool verticalWall = false;
+        private bool flooded = false;
+
+        public bool Flooded
+        {
+            get { return flooded; }
+            set { flooded = value; }
+        }
+
+
+        private bool horizontalWall = false;
+
+        public bool HorizontalWall
+        {
+            get { return horizontalWall; }
+            set { horizontalWall = value; }
+        }
+
+
+        private bool verticalWall = false;
+
+        public bool VerticalWall
+        {
+            get { return verticalWall; }
+            set { verticalWall = value; }
+        }
 
     }
 }
