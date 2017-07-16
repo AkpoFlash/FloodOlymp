@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace FloodOlymp
 {
-    class Plane
+    static class Plane
     {
-        static private int countOfFloodField = 0;
+        private static int countOfFloodField = 0;
 
-        static public int CountOfFloodField
+        public static int CountOfFloodField
         {
             get { return countOfFloodField; }
             set { countOfFloodField = value; }
@@ -19,7 +19,7 @@ namespace FloodOlymp
 
 
         // Method for basic fill the plane and created border
-        static public void MakePlane(Cell[,] mainPlane, Point maxCoord)
+        public static void MakePlane(Cell[,] mainPlane, Point maxCoord)
         {
             for (int i = 0; i < maxCoord.X + 1; i++)
             {
@@ -38,7 +38,7 @@ namespace FloodOlymp
 
 
         // Method for building all of walls in the plane
-        static public void BuildWalls(List<Wall> lstWall, Cell[,] mainPlane)
+        public static void BuildWalls(List<Wall> lstWall, Cell[,] mainPlane)
         {
             foreach (Wall wall in lstWall)
             {
@@ -61,7 +61,7 @@ namespace FloodOlymp
 
 
         // Method for break wall after flood step
-        static public void BreakWalls(List<Wall> lstWall, Cell[,] mainPlane)
+        public static void BreakWalls(List<Wall> lstWall, Cell[,] mainPlane)
         {
             int i = 0;
             while (i < lstWall.Count)
@@ -95,7 +95,7 @@ namespace FloodOlymp
 
 
         // Execution the one step of the flood 
-        static public void FloodStep(Cell[,] mainPlane, Point maxCoord)
+        public static void FloodStep(Cell[,] mainPlane, Point maxCoord)
         {
             for (int i = 0; i < maxCoord.X + 1; i++)
             {
@@ -149,7 +149,7 @@ namespace FloodOlymp
 
 
         // Check flooding of the wall on both side
-        static private bool IsBothSideFlooded(Cell[,] mainPlane, Wall wall)
+        private static bool IsBothSideFlooded(Cell[,] mainPlane, Wall wall)
         {
             if (wall.Horizontal)
                 return mainPlane[wall.Start.X - 1, wall.Start.Y].Flooded != mainPlane[wall.Start.X, wall.Start.Y].Flooded;
@@ -159,7 +159,7 @@ namespace FloodOlymp
 
 
         // Flooding one field of the plane
-        static private void FloodingField(Cell[,] mainPlane, Point point, Stack<Point> floodField)
+        private static void FloodingField(Cell[,] mainPlane, Point point, Stack<Point> floodField)
         {
             mainPlane[point.X, point.Y].Flooded = true;
             CountOfFloodField++;
