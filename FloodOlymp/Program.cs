@@ -88,7 +88,7 @@ namespace FloodOlymp
 
 
         // Method for calculate maximum value of coordinate
-        static Point MaxCoordinate(Point[] arPoint)
+        private static Point MaxCoordinate(Point[] arPoint)
         {
             Point tmp = new Point(0,0);
 
@@ -103,7 +103,7 @@ namespace FloodOlymp
 
 
         // Method for make Point's array of string array in the input file
-        static Point[] MakePointArray(string[] linesFromFile)
+        private static Point[] MakePointArray(string[] linesFromFile)
         {
             int numberOfPoint = Convert.ToInt32(linesFromFile[0]);
             Point[] arPoint = new Point[numberOfPoint];
@@ -119,7 +119,7 @@ namespace FloodOlymp
 
 
         // Method for make Wall's array of string array in the input file
-        static public List<Wall> MakeWallList(string[] linesFromFile, Point[] arPoint)
+        private static List<Wall> MakeWallList(string[] linesFromFile, Point[] arPoint)
         {
             int numberOfPoint = Convert.ToInt32(linesFromFile[0]);
             int numberOfWalls = Convert.ToInt32(linesFromFile[numberOfPoint + 1]);
