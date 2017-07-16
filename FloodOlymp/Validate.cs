@@ -9,7 +9,7 @@ namespace FloodOlymp
     static class Validate
     {
 
-        public static void checkBorder(int number, int min, int max, string message)
+        public static void CheckBorder(int number, int min, int max, string message)
         {
             if (number < min || number > max)
                 throw new Exception(message);
