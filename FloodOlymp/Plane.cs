@@ -9,13 +9,7 @@ namespace FloodOlymp
 {
     static class Plane
     {
-        private static int countOfFloodField = 0;
-
-        public static int CountOfFloodField
-        {
-            get { return countOfFloodField; }
-            set { countOfFloodField = value; }
-        }
+        public static int CountOfFloodField { get; set; }
 
 
         // Method for basic fill the plane and created border
