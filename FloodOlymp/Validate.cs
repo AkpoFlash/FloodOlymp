@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace FloodOlymp
 {
-    class Validate
+    static class Validate
     {
 
-        static public void checkBorder(int number, int min, int max, string message)
+        public static void checkBorder(int number, int min, int max, string message)
         {
             if (number < min || number > max)
                 throw new Exception(message);
