@@ -9,7 +9,7 @@ namespace FloodOlymp
 {
     class Wall
     {
-        static private int Count { get; set; }
+        private static int Count { get; set; }
         public Point Start { get; set; }
         public Point End { get; set; }
         public bool Horizontal { get; set; }

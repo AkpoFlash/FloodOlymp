@@ -9,13 +9,7 @@ namespace FloodOlymp
 {
     class File
     {
-        private string fileName;
-
-        public string FileName
-        {
-            get { return fileName; }
-            set { fileName = value; }
-        }
+        public string FileName { get; set; }
 
         public File(string fileName)
         {
