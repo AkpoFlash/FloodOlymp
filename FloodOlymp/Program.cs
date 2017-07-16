@@ -26,9 +26,9 @@ namespace FloodOlymp
 
             try
             {
-                Validate.checkBorder(numberOfPoints, 2, 100000, "Error: 2 <= Number of Points <= 100 000");
+                Validate.CheckBorder(numberOfPoints, 2, 100000, "Error: 2 <= Number of Points <= 100 000");
 
-                Validate.checkBorder(numberOfWalls, 1, numberOfPoints * 2, "Error: 1 <= Number of Wall <= " + Convert.ToString(numberOfPoints * 2));
+                Validate.CheckBorder(numberOfWalls, 1, numberOfPoints * 2, "Error: 1 <= Number of Wall <= " + Convert.ToString(numberOfPoints * 2));
 
                 // Make Point array and Wall List
                 arPoint = MakePointArray(linesFromFile);
