@@ -78,7 +78,8 @@ namespace FloodOlymp
                 outputFile.WriteToFile(outputArray);
 
             }
-            catch(Exception e){
+            catch (FloodException e)
+            {
                 Console.WriteLine(e.Message);
             }
 

@@ -12,7 +12,7 @@ namespace FloodOlymp
         public static void CheckBorder(int number, int min, int max, string message)
         {
             if (number < min || number > max)
-                throw new Exception(message);
+                throw new FloodException(message);
         }
 
 
