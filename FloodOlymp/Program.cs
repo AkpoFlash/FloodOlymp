@@ -12,8 +12,8 @@ namespace FloodOlymp
 
         static void Main(string[] args)
         {
-            File inputFile = new File("input.txt");
-            File outputFile = new File("output.txt");
+            FileHandler inputFile = new FileHandler("input.txt");
+            FileHandler outputFile = new FileHandler("output.txt");
 
             string[] linesFromFile = inputFile.ReadFromFile().Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
@@ -26,9 +26,9 @@ namespace FloodOlymp
 
             try
             {
-                Validate.CheckBorder(numberOfPoints, 2, 100000, "Error: 2 <= Number of Points <= 100 000");
+                Validator.CheckBorder(numberOfPoints, 2, 100000, "Error: 2 <= Number of Points <= 100 000");
 
-                Validate.CheckBorder(numberOfWalls, 1, numberOfPoints * 2, "Error: 1 <= Number of Wall <= " + Convert.ToString(numberOfPoints * 2));
+                Validator.CheckBorder(numberOfWalls, 1, numberOfPoints * 2, "Error: 1 <= Number of Wall <= " + Convert.ToString(numberOfPoints * 2));
 
                 // Make Point array and Wall List
                 arPoint = MakePointArray(linesFromFile);
@@ -41,22 +41,22 @@ namespace FloodOlymp
                 Cell[,] mainPlane = new Cell[maxCoord.X + 1, maxCoord.Y + 1];
 
                 // Basic fill the main plane
-                Plane.MakePlane(mainPlane, maxCoord);
-                Plane.BuildWalls(lstWall, mainPlane);
+                FloodedPlane.MakePlane(mainPlane, maxCoord);
+                FloodedPlane.BuildWalls(lstWall, mainPlane);
 
                 int countOfField = mainPlane.Length;
 
                 // Count of bordered cells
-                Plane.CountOfFloodField = 2 * (maxCoord.X + 1) + 2 * (maxCoord.Y - 1);
+                FloodedPlane.CountOfFloodField = 2 * (maxCoord.X + 1) + 2 * (maxCoord.Y - 1);
 
                 // First step of flood
-                Plane.FloodStep(mainPlane, maxCoord);
+                FloodedPlane.FloodStep(mainPlane, maxCoord);
 
 
-                while (Plane.CountOfFloodField < countOfField)
+                while (FloodedPlane.CountOfFloodField < countOfField)
                 {
-                    Plane.BreakWalls(lstWall, mainPlane);
-                    Plane.FloodStep(mainPlane, maxCoord);
+                    FloodedPlane.BreakWalls(lstWall, mainPlane);
+                    FloodedPlane.FloodStep(mainPlane, maxCoord);
                 }
 
                 // Preparation of output (console and file)
