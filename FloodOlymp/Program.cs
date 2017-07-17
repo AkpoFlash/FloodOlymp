@@ -50,13 +50,13 @@ namespace FloodOlymp
                 FloodedPlane.CountOfFloodField = 2 * (maxCoord.X + 1) + 2 * (maxCoord.Y - 1);
 
                 // First step of flood
-                FloodedPlane.FloodStep(mainPlane, maxCoord);
+                FloodedPlane.FloodStep(mainPlane);
 
 
                 while (FloodedPlane.CountOfFloodField < countOfField)
                 {
                     FloodedPlane.BreakWalls(lstWall, mainPlane);
-                    FloodedPlane.FloodStep(mainPlane, maxCoord);
+                    FloodedPlane.FloodStep(mainPlane);
                 }
 
                 // Preparation of output (console and file)

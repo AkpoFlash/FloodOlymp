@@ -10,19 +10,23 @@ namespace FloodOlymp
     static class FloodedPlane
     {
         public static int CountOfFloodField { get; set; }
+        public static Point MaxCoord { get; set; }
+        public static Point MinCoord { get; set; }
 
 
         // Method for basic fill the plane and created border
         public static void MakePlane(Cell[,] mainPlane, Point maxCoord)
         {
-            for (int i = 0; i < maxCoord.X + 1; i++)
+            MaxCoord = maxCoord;
+
+            for (int i = 0; i < MaxCoord.X + 1; i++)
             {
-                for (int j = 0; j < maxCoord.Y + 1; j++)
+                for (int j = 0; j < MaxCoord.Y + 1; j++)
                 {
                     mainPlane[i, j] = new Cell();
 
                     // Fill bordered cell
-                    if (i == maxCoord.X || i == 0 || j == maxCoord.Y || j == 0)
+                    if (i == MaxCoord.X || i == 0 || j == MaxCoord.Y || j == 0)
                     {
                         mainPlane[i, j].Flooded = true;
                     }
@@ -89,11 +93,11 @@ namespace FloodOlymp
 
 
         // Execution the one step of the flood 
-        public static void FloodStep(Cell[,] mainPlane, Point maxCoord)
+        public static void FloodStep(Cell[,] mainPlane)
         {
-            for (int i = 0; i < maxCoord.X + 1; i++)
+            for (int i = 0; i < MaxCoord.X + 1; i++)
             {
-                for (int j = 0; j < maxCoord.Y + 1; j++)
+                for (int j = 0; j < MaxCoord.Y + 1; j++)
                 {
                     if (mainPlane[i, j].Flooded == true)
                     {
@@ -103,37 +107,17 @@ namespace FloodOlymp
                         {
                             Point point = floodField.Pop();
 
-                            // Check down cell
-                            if (point.X != maxCoord.X
-                                && !mainPlane[point.X + 1, point.Y].Flooded
-                                && !mainPlane[point.X + 1, point.Y].HorizontalWall)
-                            {
+                            if (CheckDownCell(mainPlane, point))
                                 FloodingField(mainPlane, new Point(point.X + 1, point.Y), floodField);
-                            }
 
-                            // Check up cell
-                            if (point.X != 0
-                                && !mainPlane[point.X - 1, point.Y].Flooded
-                                && !mainPlane[point.X, point.Y].HorizontalWall)
-                            {
+                            if (CheckUpCell(mainPlane, point))
                                 FloodingField(mainPlane, new Point(point.X - 1, point.Y), floodField);
-                            }
 
-                            // Check right cell
-                            if (point.Y != maxCoord.Y
-                                && !mainPlane[point.X, point.Y + 1].Flooded
-                                && !mainPlane[point.X, point.Y + 1].VerticalWall)
-                            {
+                            if (CheckRightCell(mainPlane, point))
                                 FloodingField(mainPlane, new Point(point.X, point.Y + 1), floodField);
-                            }
 
-                            // Check left cell
-                            if (point.Y != 0
-                                && !mainPlane[point.X, point.Y - 1].Flooded
-                                && !mainPlane[point.X, point.Y].VerticalWall)
-                            {
+                            if (CheckLeftCell(mainPlane, point))
                                 FloodingField(mainPlane, new Point(point.X, point.Y - 1), floodField);
-                            }
 
                         }
                     }
@@ -158,6 +142,34 @@ namespace FloodOlymp
             mainPlane[point.X, point.Y].Flooded = true;
             CountOfFloodField++;
             floodField.Push(new Point(point.X, point.Y));
+        }
+
+
+        // Check down cell of the opportunity for flooding
+        private static bool CheckDownCell(Cell[,] mainPlane, Point point)
+        {
+            return point.X != MaxCoord.X && !mainPlane[point.X + 1, point.Y].Flooded && !mainPlane[point.X + 1, point.Y].HorizontalWall;
+        }
+
+
+        // Check up cell of the opportunity for flooding
+        private static bool CheckUpCell(Cell[,] mainPlane, Point point)
+        {
+            return point.X != MinCoord.Y && !mainPlane[point.X - 1, point.Y].Flooded && !mainPlane[point.X, point.Y].HorizontalWall;
+        }
+
+
+        // Check right cell of the opportunity for flooding
+        private static bool CheckRightCell(Cell[,] mainPlane, Point point)
+        {
+            return point.Y != MaxCoord.Y  && !mainPlane[point.X, point.Y + 1].Flooded  && !mainPlane[point.X, point.Y + 1].VerticalWall;
+        }
+
+
+        // Check left cell of the opportunity for flooding
+        private static bool CheckLeftCell(Cell[,] mainPlane, Point point)
+        {
+            return point.Y != MinCoord.Y && !mainPlane[point.X, point.Y - 1].Flooded && !mainPlane[point.X, point.Y].VerticalWall;
         }
 
 
