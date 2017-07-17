@@ -16,21 +16,21 @@ namespace FloodOlymp
         public int Index { get; set; }
 
 
-        public Wall(Point StartPoint, Point EndPoint)
+        public Wall(Point startPoint, Point endPoint)
         {
-            this.Horizontal = (StartPoint.X == EndPoint.X) ? true : false;
+            this.Horizontal = (startPoint.X == endPoint.X) ? true : false;
 
-            bool validSequence = (this.Horizontal) ? StartPoint.Y < EndPoint.Y : StartPoint.X < EndPoint.X;
+            bool validSequence = (this.Horizontal) ? startPoint.Y < endPoint.Y : startPoint.X < endPoint.X;
 
             if (validSequence)
             {
-                this.Start = StartPoint;
-                this.End = EndPoint;
+                this.Start = startPoint;
+                this.End = endPoint;
             }
             else
             {
-                this.Start = EndPoint;
-                this.End = StartPoint;
+                this.Start = endPoint;
+                this.End = startPoint;
             }
 
             this.Index = ++Count;
