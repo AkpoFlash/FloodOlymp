@@ -46,6 +46,7 @@
     <Compile Include="Cell.cs" />
     <Compile Include="FileHandler.cs" />
     <Compile Include="FloodedPlane.cs" />
+    <Compile Include="FloodException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validator.cs" />
